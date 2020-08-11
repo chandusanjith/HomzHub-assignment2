@@ -1,0 +1,41 @@
+from django.db import models
+from django.conf import settings
+from django.contrib.auth.models import User
+
+
+class StateMaster(models.Model):
+  StateName = models.TextField(default = 1)
+  StateCode = models.IntegerField(default=0)
+  created = models.DateTimeField(auto_now_add=True)
+   
+  def __str__(self):
+    return self.StateName  
+
+
+class RequestTypeMaster(models.Model):
+  RequestType = models.TextField(default = "")
+  
+  def __str__(self):
+    return self.RequestType
+
+
+class StatusMaster(models.Model):
+  StatusType = models.TextField(default="")  
+ 
+  def __str__(self):
+    return self.StatusType
+
+class UserRequest(models.Model):
+  RequestedUser = models.ForeignKey(User, on_delete=models.CASCADE, related_name='UserRequest_user', default = "")
+  RequestType = models.ForeignKey(RequestTypeMaster, on_delete=models.CASCADE, related_name='UserRequest_type')
+  RequestDesc = models.TextField(default = "")
+  City = models.TextField(default = "")
+  State = models.ForeignKey(StateMaster, on_delete=models.CASCADE, related_name='UserRequest_state')
+  Pincode = models.IntegerField(default=0)
+  PhoneCode = models.TextField(default = "")
+  Phone = models.IntegerField(default = "")
+  Status  = models.ForeignKey(StateMaster, on_delete=models.CASCADE, related_name='UserRequest_Status')
+  Remark = models.TextField(default = "") 
+
+  def __str__(self):
+    return self.RequestType
