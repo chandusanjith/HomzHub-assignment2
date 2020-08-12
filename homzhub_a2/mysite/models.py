@@ -34,8 +34,9 @@ class UserRequest(models.Model):
   Pincode = models.IntegerField(default=0)
   PhoneCode = models.TextField(default = "")
   Phone = models.IntegerField(default = "")
-  Status  = models.ForeignKey(StateMaster, on_delete=models.CASCADE, related_name='UserRequest_Status')
+  Status  = models.ForeignKey(StatusMaster, on_delete=models.CASCADE, related_name='UserRequest_Status')
   Remark = models.TextField(default = "") 
+  created = models.DateTimeField(auto_now_add=True)
 
   def __str__(self):
-    return self.RequestType
+    return str(self.RequestedUser) + "-" + str(self.RequestType)

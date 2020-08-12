@@ -8,6 +8,11 @@ from django.contrib import messages
 from .models import StateMaster, RequestTypeMaster, StatusMaster, UserRequest
 import datetime
 from django.contrib.auth import logout as django_logout
+from rest_framework import viewsets
+from .serializers import UserRequestSerializer
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 
 def Login(request):
     if request.method == "GET":
@@ -61,8 +66,12 @@ def Signup(request):
 def RequestView(request):  
   if not request.user.is_authenticated:
       return render(request, 'Login.html')
-  if request.method == 'GET':    
-      return render(request, 'Base.html')            
+  if request.method == 'GET':
+      Requests = UserRequest.objects.filter(RequestedUser=request.user)
+      context = {
+        'Requests':Requests
+      }
+      return render(request, 'Base.html', context)            
 
 def AddRequest(request):
   if not request.user.is_authenticated:
@@ -76,25 +85,30 @@ def AddRequest(request):
       }
       return render(request, 'AddRequest.html', context) 
   else:
-    count = 0
-    Deep_cleaning = request.POST['Deep Cleaning']    
-    Painting  = request.POST['Painting']
-    Plumbing = request.POST['Plumbing']  
-    Electrical = request.POST['Electrical'] 
+    RequestType =  request.POST['rtype'];
     RequestDescription = request.POST['Rqdesc']    
     phonenum = request.POST['phonenum']
     ccode = request.POST['ccode']
     pcode = request.POST['pcode']
     state = request.POST['state']
     cityname = request.POST['cityname']
-    print(Deep_cleaning)
-    print(Painting)
-    print(Plumbing)
-    print(Electrical)
-    print(RequestDescription)
-    print(phonenum)
-    print(ccode)
-    print(pcode)
-    print(state)
-    print(cityname)          
-    return render(request, 'AddRequest.html') 
+    Request_Instance = RequestTypeMaster.objects.get(id=RequestType)
+    State_Instance = StateMaster.objects.get(id=state)
+    Status_Instance = StatusMaster.objects.get(id=1)
+    Request = UserRequest(RequestedUser=request.user,RequestType=Request_Instance,RequestDesc=RequestDescription,City=cityname,State=State_Instance,Pincode=pcode,PhoneCode=pcode,Phone=phonenum,Status=Status_Instance,Remark='pending')
+    Request.save()
+    return HttpResponseRedirect('/request/')
+
+
+class RequestViewSet(viewsets.ModelViewSet):
+  authentication_classes = [SessionAuthentication, BasicAuthentication]
+  permission_classes = [IsAuthenticated]
+  serializer_class = UserRequestSerializer
+  queryset = UserRequest.objects.all() 
+  def get_queryset(self):
+    if self.action == 'list':       
+      return self.queryset.filter(RequestedUser=self.request.user)
+    return self.queryset
+   
+
+   

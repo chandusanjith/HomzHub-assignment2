@@ -3,6 +3,8 @@
 {% if messages %} {% for message in messages %}
 <div class="msg msg-error z-depth-3 scale-transition"> {{ message }} </div>
 {% endfor %}{% endif %}
+<br>
+<h4><b>Signup</b></h4>
 <div class="card ">
     <div class="card-content">
         <h6 class="red-text">* required</h6>
@@ -31,8 +33,9 @@
                             <label for="Password2" class="black-text">Re type Password *</label>
                         </div>
                         </div>
-                   <button class="btn waves-effect waves-light right pulse" id= "submitanswer" type="submit">Register
+                   <button class="btn waves-effect waves-light right black pulse" id= "submitanswer" type="submit">Register
                 </button>
+                <br>
                </form>
     </div>
 {% endblock content %}

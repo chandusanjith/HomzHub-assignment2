@@ -15,7 +15,7 @@
     }
 
     body {
-      background: #fff;
+      background: #eeee;
     }
 
     .input-field input[type=date]:focus + label,
@@ -34,6 +34,18 @@
     }
   </style>
 </head>
+<div class="navbar-fixed">
+<nav>
+     <div class="nav-wrapper white">
+          <ul class="left">
+              <li><a href="collapsible.html" class="label-icon"></a><i class="material-icons"></i></li>
+              <li><a href="collapsible.html" class="label-icon"></a><i class="material-icons"></i></li>
+              <!--<li><a href="/Dashboard/" class="btn-floating btn-small waves-effect waves-light black tooltipped"  data-position="bottom" data-tooltip="Click to go Dashboard"><i class="material-icons">devices_other</i></a></li>-->
+              <li><h5 href = "/request/" class="tooltipped black-text"  data-position="bottom" data-tooltip="HomzHub"> HomzHub Assignment-2</h5></li>
+          </ul>
+     </div>
+</nav>
+</div>
 {% block content%}
 <body>
   <div class="section"></div>
@@ -44,8 +56,9 @@
 <div class="msg msg-error z-depth-3 scale-transition"> {{ message }} </div>
 {% endfor %}{% endif %}  
       <h5 class="indigo-text">Please, login into your account</h5>
+      <a type='submit' name='btn_login' href="/admin/" class='col s12 btn waves-effect indigo'>Admin Login?</a>
       <div class="section"></div>
-
+       
       <div class="container">
         <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 

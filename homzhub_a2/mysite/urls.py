@@ -16,12 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from .views import RequestView, Logout, Login, Signup, AddRequest
+from rest_framework import routers
+from django.views.static import serve
+from . import views
+from django.conf.urls import include, url
+from .models import UserRequest
+
+router = routers.DefaultRouter()
+router.register(r'Request', views.RequestViewSet, basename=UserRequest)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', RequestView, name='request'),
     path('request/', RequestView, name='request'),
     path('Login/', Login, name='Login'),
     path('Logout/', Logout, name='Logout'),
     path('Signup/',Signup, name='Signup'),
-    path('AddRequest/', AddRequest, name='AddRequest')
+    path('AddRequest/', AddRequest, name='AddRequest'),
+    path('RawData/', include(router.urls)),
 ]
