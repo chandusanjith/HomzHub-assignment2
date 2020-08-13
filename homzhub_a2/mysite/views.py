@@ -97,7 +97,7 @@ def AddRequest(request):
     Request_Instance = RequestTypeMaster.objects.get(id=RequestType)
     State_Instance = StateMaster.objects.get(id=state)
     Status_Instance = StatusMaster.objects.get(id=1)
-    Request = UserRequest(RequestedUser=request.user,RequestType=Request_Instance,RequestDesc=RequestDescription,City=cityname,State=State_Instance,Pincode=pcode,PhoneCode=pcode,Phone=phonenum,Status=Status_Instance,Remark='pending')
+    Request = UserRequest(RequestedUser=request.user,RequestType=Request_Instance,RequestDesc=RequestDescription,City=cityname,State=State_Instance,Pincode=pcode,PhoneCode=ccode,Phone=phonenum,Status=Status_Instance,Remark='pending')
     Request.save()
     return HttpResponseRedirect('/request/')
 
