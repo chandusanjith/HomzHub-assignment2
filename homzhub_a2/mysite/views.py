@@ -127,8 +127,10 @@ def OpenAssignment2(request):
     ScrapWeb()
     if request.method == 'GET':
       Result = ScrappedResult.objects.all()
+      count = ScrappedResult.objects.all().count()
       context = {
-        'Result':Result
+        'Result':Result,
+        'count':count,
       }
       return render(request, 'ScrappedResult.html', context)
 
