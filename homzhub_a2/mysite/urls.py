@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import RequestView, Logout, Login, Signup, AddRequest
+from .views import RequestView, Logout, Login, Signup, AddRequest, ReqDetail, OpenAssignment2
 from rest_framework import routers
 from django.views.static import serve
 from . import views
@@ -35,4 +35,6 @@ urlpatterns = [
     path('Signup/',Signup, name='Signup'),
     path('AddRequest/', AddRequest, name='AddRequest'),
     path('RawData/', include(router.urls)),
+    path('OpenAssignment2/', OpenAssignment2, name='OpenAssignment2'),
+    path('ReqDetail/<id>/', ReqDetail, name='ReqDetail'),
 ]

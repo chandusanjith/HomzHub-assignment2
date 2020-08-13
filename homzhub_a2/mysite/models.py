@@ -40,3 +40,11 @@ class UserRequest(models.Model):
 
   def __str__(self):
     return str(self.RequestedUser) + "-" + str(self.RequestType)
+
+class ScrappedResult(models.Model):
+    Title = models.TextField(default = "")
+    Link = models.TextField(default = "")
+    PubDate = models.TextField(default = "")
+
+    def __str__(self):
+       return self.Title
