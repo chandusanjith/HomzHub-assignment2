@@ -12,6 +12,7 @@
           <ul class="right">
               <a type='submit' name='btn_login' href="/admin/" class='col s12 btn waves-effect indigo'>Admin Login?</a>
            <a type='submit' name='btn_login' href="/Login/" class='col s12 btn waves-effect indigo'>Open Assignment-2</a>
+           <li><a class="dark-toggle tooltipped black-text" onclick="myDark()"  data-position="bottom"  data-tooltip="Toggle dark/light themes" ><i class="material-icons">brightness_4</i></a></li>
             </ul>
      </div>
 </nav>
@@ -27,7 +28,7 @@
   <div class="col s12">
     <h4><b>Scrapped Result</b></h4>
     <h5>Total: {{count}} feeds</h5>
-    {% for result in Result reversed%}
+    {% for result in Result%}
     <div class="card z-depth-5 hoverable">
       <div class="card-content">
           <br>
