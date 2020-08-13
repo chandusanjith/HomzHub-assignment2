@@ -3,3 +3,4 @@ djangorestframework
 lxml
 beautifulsoup4
 gunicorn
+whitenoise
