@@ -55,12 +55,12 @@
 
         <tbody>
           {% for request in Requests reversed%}
-          <tr>
-            <td>{{request.id}}</td>
-            <td>{{request.RequestType}}</td>
-            <td>{{request.RequestDesc}}</td>
-            <td>{{request.created}}</td>
-            <td>{{request.Status}}</td>
+           <tr>
+            <td> <a href="/ReqDetail/{{request.id}}/" class="blue-text">{{request.id}}</a></td>
+            <td><a href="/ReqDetail/{{request.id}}/" class="blue-text" >{{request.RequestType}}</a></td>
+            <td><a href="/ReqDetail/{{request.id}}/" class="blue-text" >{{request.RequestDesc}}</a></td>
+            <td><a href="/ReqDetail/{{request.id}}/" class="blue-text" >{{request.created}}</a></td>
+            <td><a href="/ReqDetail/{{request.id}}/" class="blue-text" >{{request.Status}}</a></td>
           </tr>
           {% empty %}
            <h5>You have not raised any request</h5>
