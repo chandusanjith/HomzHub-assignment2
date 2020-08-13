@@ -2,3 +2,4 @@ django
 djangorestframework
 lxml
 beautifulsoup4
+gunicorn
